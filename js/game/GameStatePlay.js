@@ -5,7 +5,6 @@ var GameState = function(game) {
 var cursors;
 var platforms;
 
-// Load images and sounds
 GameState.prototype.preload = function() {
     this.game.load.image('rocket', 'assets/diamond.png');
     this.game.load.image('smoke', 'assets/star.png');
@@ -14,7 +13,6 @@ GameState.prototype.preload = function() {
     this.game.load.spritesheet('player', 'assets/dude.png', 32, 48);
 };
 
-// Setup the example
 GameState.prototype.create = function() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
     this.game.stage.backgroundColor = 0x4488cc;
@@ -26,6 +24,9 @@ GameState.prototype.create = function() {
     enemies.enableBody = true;
     enemies.add(new Enemy(this.game, this.game.width/2, this.game.height/2, this, this.player));
 
+    goals = game.add.group();
+    goals.enableBody = true;
+    goals.add(new Goal(this.game, 100, 200, this));
 
 
     platforms = game.add.group();
@@ -43,8 +44,11 @@ GameState.prototype.create = function() {
 
 };
 
-// The update() method is called every frame
 GameState.prototype.update = function() {
     this.game.physics.arcade.collide(this.player, platforms);
     this.game.physics.arcade.collide(enemies, platforms);
 };
+
+GameState.prototype.render = function(){
+    this.game.debug.spriteCoords(this.player, 100, 100, 000000);
+}
