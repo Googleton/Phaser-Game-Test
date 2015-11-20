@@ -20,10 +20,12 @@ GameState.prototype.create = function() {
     this.player = new Player(this.game, this.game.width/2, this.game.height/2, this)
 
 
+    this.enemy = new Enemy(this.game, this.game.width/2, this.game.height/2, this, this.player);
+
     enemies = game.add.group();
     enemies.enableBody = true;
-    enemies.add(new Enemy(this.game, this.game.width/2, this.game.height/2, this, this.player));
-
+    enemies.add(this.enemy);
+    enemies.add(new Enemy(this.game, 250, 100, this, this.enemy));
     goals = game.add.group();
     goals.enableBody = true;
     goals.add(new Goal(this.game, 100, 200, this));
