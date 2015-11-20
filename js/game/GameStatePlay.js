@@ -37,6 +37,8 @@ GameState.prototype.create = function() {
     var ground = platforms.create(0, game.world.height - 64, 'ground');
     ground.scale.setTo(2, 2);
     ground.body.immovable = true;
+    
+    platforms.setAll('immovable', true);
 
     platforms.create(0, 250, 'ground');
     platforms.create(600, 300, 'ground');
