@@ -20,11 +20,13 @@ GameState.prototype.create = function() {
     this.game.stage.backgroundColor = 0x4488cc;
 
     this.player = new Player(this.game, this.game.width/2, this.game.height/2, this)
-    this.game.add.existing(this.player);
 
-  //  enemies = game.add.group();
-  //  enemies.enableBody = true;
-  //  enemies.add(new Enemy(this.game, this.game.width/2, this.game.height/2, this, this.player));
+
+    enemies = game.add.group();
+    enemies.enableBody = true;
+    enemies.add(new Enemy(this.game, this.game.width/2, this.game.height/2, this, this.player));
+
+
 
     platforms = game.add.group();
     platforms.enableBody = true;
@@ -37,10 +39,12 @@ GameState.prototype.create = function() {
     this.game.input.activePointer.y = this.game.height/2 - 100;
 
     this.cursors = game.input.keyboard.createCursorKeys();
+    this.game.add.existing(this.player);
+
 };
 
 // The update() method is called every frame
 GameState.prototype.update = function() {
     this.game.physics.arcade.collide(this.player, platforms);
-  //  this.game.physics.arcade.collide(enemies, platforms);
+    this.game.physics.arcade.collide(enemies, platforms);
 };
