@@ -38,8 +38,8 @@ GameState.prototype.create = function() {
     ground.scale.setTo(2, 2);
     ground.body.immovable = true;
 
-    platforms.create(0, 100, 'ground');
-    platforms.create(600, 200, 'ground');
+    platforms.create(0, 250, 'ground');
+    platforms.create(600, 300, 'ground');
     
     
     this.game.input.activePointer.x = this.game.width/2;
