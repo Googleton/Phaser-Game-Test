@@ -47,9 +47,8 @@ Player.prototype.update = function(){
     }
 
     if(this.gameState.cursors.down.isDown){
-        missile = new Missile(this, this.game, 150, 150)
-        this.game.add.existing(missile);
-        
+    //  missile = new Missile(this, this.game, 150, 150)
+    //  this.game.add.existing(missile);
     }
 
     if (this.gameState.cursors.up.isDown && this.body.touching.down)
