@@ -15,7 +15,7 @@ var Enemy = function(game, x, y, gameState, target){
     this.animations.add('left', [0, 1], 10, true);
     this.animations.add('right', [2, 3], 10, true);
 
-    MIN_DISTANCE = 32;
+    MIN_DISTANCE = 54;
     MAX_SPEED = 140;
 }
 
@@ -34,7 +34,7 @@ Enemy.prototype.update = function(){
     if (distance > MIN_DISTANCE) {
         var rotation = this.game.math.angleBetween(this.x, this.y, this.target.x, this.target.y);
         this.body.velocity.x = Math.cos(rotation) * MAX_SPEED;
-        //this.body.velocity.y = Math.sin(rotation) * MAX_SPEED;
+        this.body.velocity.y = Math.sin(rotation) * MAX_SPEED;
     } else {
         this.body.velocity.setTo(0, 0);
     }
