@@ -46,6 +46,12 @@ Player.prototype.update = function(){
         this.frame = facingDirection;
     }
 
+    if(this.gameState.cursors.down.isDown){
+        missile = new Missile(this, this.game, this.body.x, this.body.y)
+        this.game.add.existing(missile);
+        
+    }
+
     if (this.gameState.cursors.up.isDown && this.body.touching.down)
     {
         this.body.velocity.y = -250;
