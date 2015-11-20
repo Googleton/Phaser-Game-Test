@@ -25,7 +25,7 @@ GameState.prototype.create = function() {
     enemies = game.add.group();
     enemies.enableBody = true;
     enemies.add(this.enemy);
-    enemies.add(new Enemy(this.game, 250, 100, this, this.enemy));
+    enemies.add(new Enemy(this.game, 100, 200, this, this.enemy));
     goals = game.add.group();
     goals.enableBody = true;
     goals.add(new Goal(this.game, 100, 200, this));
