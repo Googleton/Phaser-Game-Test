@@ -38,7 +38,7 @@ GameState.prototype.create = function() {
     ground.scale.setTo(2, 2);
     ground.body.immovable = true;
     
-    platforms.setAll('immovable', true);
+    platforms.setAll('body.immovable', true);
 
     platforms.create(0, 250, 'ground');
     platforms.create(600, 300, 'ground');
@@ -55,6 +55,7 @@ GameState.prototype.create = function() {
 GameState.prototype.update = function() {
     this.game.physics.arcade.collide(this.player, platforms);
     this.game.physics.arcade.collide(enemies, platforms);
+    this.game.physics.arcade.collide(this.player, enemies);
 };
 
 GameState.prototype.render = function(){
