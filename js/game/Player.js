@@ -47,7 +47,7 @@ Player.prototype.update = function(){
     }
 
     if(this.gameState.cursors.down.isDown){
-        missile = new Missile(this, this.game, this.body.x, this.body.y)
+        missile = new Missile(this, this.game, 150, 150)
         this.game.add.existing(missile);
         
     }
