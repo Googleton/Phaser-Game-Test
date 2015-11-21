@@ -13,6 +13,12 @@ var Player = function(game, x, y, gameState){
     this.animations.add('left', [0, 1, 2, 3], 10, true);
     this.animations.add('right', [5, 6, 7, 8], 10, true);
 
+
+    //Input
+    this.game.input.keyboard.addKeyCapture([Phaser.Keyboard.SPACEBAR]);
+    var shootKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    shootKey.onDown.add(this.shoot, this);
+
     facingDirection = 4;
 }
 
@@ -46,15 +52,13 @@ Player.prototype.update = function(){
         this.frame = facingDirection;
     }
 
-    if(this.gameState.cursors.down.isDown){
-    //  missile = new Missile(this, this.game, 150, 150)
-    //  this.game.add.existing(missile);
-    }
-
     if (this.gameState.cursors.up.isDown && this.body.touching.down)
     {
         this.body.velocity.y = -250;
     }
+}
 
-
+Player.prototype.shoot = function(){
+    missile = new Missile(this.game, 150, 150)
+    this.game.add.existing(missile);
 }

@@ -34,7 +34,7 @@ Enemy.prototype.update = function(){
     if (distance > MIN_DISTANCE) {
         var rotation = this.game.math.angleBetween(this.x, this.y, this.target.x, this.target.y);
         this.body.velocity.x = Math.cos(rotation) * MAX_SPEED;
-        this.body.velocity.y = Math.sin(rotation) * MAX_SPEED;
+        //this.body.velocity.y = Math.sin(rotation) * MAX_SPEED;
     } else {
         this.body.velocity.setTo(0, 0);
     }
