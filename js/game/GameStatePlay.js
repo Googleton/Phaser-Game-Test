@@ -4,6 +4,7 @@ var GameState = function(game) {
 
 var cursors;
 var platforms;
+var enemies;
 
 GameState.prototype.preload = function() {
     this.game.load.image('rocket', 'assets/diamond.png');
@@ -52,7 +53,6 @@ GameState.prototype.create = function() {
 GameState.prototype.update = function() {
     this.game.physics.arcade.collide(this.player, platforms);
     this.game.physics.arcade.collide(enemies, platforms);
-  //  this.game.physics.arcade.collide(this.player, enemies);
 };
 
 GameState.prototype.render = function(){

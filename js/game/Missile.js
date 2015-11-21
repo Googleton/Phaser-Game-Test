@@ -1,8 +1,9 @@
-var Missile = function(game, x, y) {
+var Missile = function(game, x, y, gameState) {
     Phaser.Sprite.call(this, game, x, y, 'rocket');
 
     this.anchor.setTo(0.5, 0.5);
     this.game.physics.enable(this, Phaser.Physics.ARCADE);
+    this.gameState = gameState;
 
     this.SPEED = 250;
     this.TURN_RATE = 5;
@@ -35,6 +36,8 @@ Missile.prototype = Object.create(Phaser.Sprite.prototype);
 Missile.prototype.constructor = Missile;
 
 Missile.prototype.update = function() {
+    this.game.physics.arcade.overlap(this.gameState.enemies, this, explode, null);
+
     var distance = this.game.math.distance(this.x, this.y,
         this.game.input.activePointer.x, this.game.input.activePointer.y);
     if (distance < 30) {
@@ -74,4 +77,9 @@ Missile.prototype.update = function() {
 
 Missile.prototype.explode = function(x, y){
     this.smokeEmitter.kill();
+}
+
+Missile.prototype.explode = function(missile, enemy){
+    this.smokeEmitter.kill();
+    enemy.kill;
 }

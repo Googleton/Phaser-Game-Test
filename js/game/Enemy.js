@@ -15,7 +15,7 @@ var Enemy = function(game, x, y, gameState, target){
     this.animations.add('left', [0, 1], 10, true);
     this.animations.add('right', [2, 3], 10, true);
 
-    MIN_DISTANCE = 54;
+    MIN_DISTANCE = 40;
     MAX_SPEED = 140;
 }
 
@@ -30,13 +30,17 @@ Enemy.prototype.create = function() {
 Enemy.prototype.update = function(){
 
     var distance = this.game.math.distance(this.x, this.y, this.target.x, this.target.y);
+    this.body.velocity.x = 0;
 
     if (distance > MIN_DISTANCE) {
         var rotation = this.game.math.angleBetween(this.x, this.y, this.target.x, this.target.y);
         this.body.velocity.x = Math.cos(rotation) * MAX_SPEED;
-        //this.body.velocity.y = Math.sin(rotation) * MAX_SPEED;
     } else {
-        this.body.velocity.setTo(0, 0);
+
+    }
+
+    if((this.target.y +10) <= this.y && this.body.touching.down) {
+        this.body.velocity.y = -250;
     }
 
     if(this.body.velocity.x > 0){
@@ -49,4 +53,8 @@ Enemy.prototype.update = function(){
         this.frame = this.direction;
     }
 
+}
+
+Enemy.prototype.damage = function() {
+    this.kill();
 }
