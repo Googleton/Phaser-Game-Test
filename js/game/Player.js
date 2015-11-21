@@ -60,5 +60,5 @@ Player.prototype.update = function(){
 
 Player.prototype.shoot = function(){
     missile = new Missile(this.game, 150, 150, this)
-    this.game.add.existing(missile);
+    this.gameState.missiles.add(missile);
 }

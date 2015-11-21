@@ -36,13 +36,14 @@ Missile.prototype = Object.create(Phaser.Sprite.prototype);
 Missile.prototype.constructor = Missile;
 
 Missile.prototype.update = function() {
-    this.game.physics.arcade.overlap(this.gameState.enemies, this, explode, null);
+    this.game.physics.arcade.collide(this, this.gameState.platforms);
+    this.game.physics.arcade.collide(this.gameState.enemies, this, this.explode);
 
     var distance = this.game.math.distance(this.x, this.y,
         this.game.input.activePointer.x, this.game.input.activePointer.y);
     if (distance < 30) {
-        this.kill();
-        this.explode(this.x, this.y);
+     //   this.kill();
+     //   this.explode(this.x, this.y);
     }
 
     this.smokeEmitter.x = this.x;
@@ -75,11 +76,14 @@ Missile.prototype.update = function() {
     this.body.velocity.y = Math.sin(this.rotation) * this.SPEED;
 };
 
-Missile.prototype.explode = function(x, y){
-    this.smokeEmitter.kill();
-}
+//Missile.prototype.explode = function(x, y){
+ //   console.log('Overlap!');
+  //  this.smokeEmitter.kill();
+//}
 
 Missile.prototype.explode = function(missile, enemy){
     this.smokeEmitter.kill();
-    enemy.kill;
+    console.log('Overlap!');
+    enemy.kill();
+    missile.kill();
 }
